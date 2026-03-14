@@ -1,0 +1,10 @@
+*.keras
+*.pkl
+*.h5
+*media/
+*venv/
+*model
+*_pycache_
+*migrations
+_init_.py
+asgi.py

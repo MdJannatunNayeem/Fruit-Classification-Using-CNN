@@ -1,0 +1,63 @@
+
+{% load static %}
+<!-- ================= NAVBAR ================= -->
+<nav id="navbar"
+     class="fixed w-full top-0 left-0 z-50 transition-all duration-500 backdrop-blur-lg bg-black/70">
+
+  <div class="max-w-7xl md:mx-5 px-6 py-4 flex items-center justify-between">
+
+   <!-- Logo -->
+<div class="flex items-center">
+    <img src="{% static 'images/logo.png' %}" alt="FruitAI Logo" class="h-6 w-auto">
+    <!-- Optional: text next to logo -->
+    <span class="ml-2 text-white text-md font-bold tracking-wide">FruitsAI</span>
+</div>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex space-x-10 text-white font-medium text-sm">
+
+      <a href="/"
+         class="relative group {% if request.path == '/' %}text-indigo-300{% endif %}">
+        Home
+        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+
+      <a href="/models-result/"
+         class="relative group {% if request.path == '/models-result/' %}text-indigo-300{% endif %}">
+        Models
+        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+
+      <a href="/fruits/"
+         class="relative group {% if request.path == '/fruits/' %}text-indigo-300{% endif %}">
+        Fruits
+        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+
+    </div>
+
+    <!-- Mobile Button -->
+    <div class="md:hidden">
+      <button id="menuBtn" class="text-white text-2xl">☰</button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+       class="hidden md:hidden text-center text-white pb-4 space-y-4 bg-black/60 backdrop-blur-lg">
+    <a href="/" class="block hover:text-indigo-300 transition">Home</a>
+    <a href="/models-result/" class="block hover:text-indigo-300 transition">Models</a>
+  </div>
+</nav>
+<script>
+    const navbar = document.getElementById("navbar");
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+});
+
+
+</script>

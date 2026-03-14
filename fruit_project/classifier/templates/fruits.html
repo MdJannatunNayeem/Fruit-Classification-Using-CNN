@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fruit Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-b from-blue-800 to-black">
+{% include 'navbar.html' %}
+
+<section class="py-16 mt-10">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- Title -->
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-white">
+                Our Fruit Collection
+            </h2>
+            <p class="text-gray-500 mt-3">
+                32 Fresh Fruits Dataset
+            </p>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+
+            {% for fruit in fruits %}
+            <div class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+
+                <div class="h-36 overflow-hidden">
+                    <img src="{% static fruit.image %}"
+                         alt="{{ fruit.name }}"
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                </div>
+
+                <div class="py-3 text-center">
+                    <h3 class="text-sm font-semibold text-gray-700">
+                        {{ fruit.name }}
+                    </h3>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+ <!-- Footer -->
+    {% include 'footer.html' %}
+
+</body>
+</html>

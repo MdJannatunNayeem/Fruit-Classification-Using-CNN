@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Model Results | Fruit Classification</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-800 to-black">
+  
+  {% include 'navbar.html' %}
+
+  <div class="max-w-7xl mx-auto px-6 py-12 mt-20">
+
+    <!-- Page Title -->
+    <h1 class="text-4xl font-bold text-center mb-14 text-white">
+      📊 Model Performance Dashboard
+    </h1>
+
+    <!-- ================= MODEL CARD ================= -->
+    <section class="bg-gray-900 backdrop-blur-xl rounded-3xl p-8 shadow-2xl mb-16">
+
+      <!-- Model Name -->
+      <div class="flex items-center gap-4 mb-10">
+        <div class="h-12 w-1 bg-white rounded-full"></div>
+        <h2 class="text-3xl font-semibold text-white">
+          Ensemble Model (ResNet50, InceptionV3, Xception)
+        </h2>
+      </div>
+
+      <!-- All Cards Stacked Vertically -->
+      <div class="grid grid-cols-1 gap-8">
+
+        <!-- Accuracy Curve -->
+        <div class="bg-white/10 rounded-2xl p-6 hover:scale-[1.02] transition flex justify-center">
+          <div>
+            <h3 class="text-lg font-medium mb-4 text-yellow-300 text-center">
+              Accuracy Curve
+            </h3>
+            <img src="{% static 'images/et.jpeg' %}" 
+                 class="rounded-xl shadow-lg w-full max-h-64 object-contain cursor-pointer preview-img">
+          </div>
+        </div>
+
+        <!-- ROC Curve -->
+        <div class="bg-white/10 rounded-2xl p-6 hover:scale-[1.02] transition flex justify-center">
+          <div>
+            <h3 class="text-lg font-medium mb-4 text-yellow-300 text-center">
+              ROC Curve
+            </h3>
+            <img src="{% static 'images/eroc.jpeg' %}" 
+                 class="rounded-xl shadow-lg w-full max-h-64 object-contain cursor-pointer preview-img">
+          </div>
+        </div>
+
+        <!-- Confusion Matrix -->
+        <div class="bg-white/10 rounded-2xl p-6 hover:scale-[1.02] transition flex justify-center">
+          <div>
+            <h3 class="text-lg font-medium mb-4 text-green-400 text-center">
+              Confusion Matrix
+            </h3>
+            <img src="{% static 'images/ecm.jpeg' %}" 
+                 class="rounded-xl shadow-lg w-full max-h-64 object-contain cursor-pointer preview-img">
+          </div>
+        </div>
+
+        <!-- Classification Report -->
+        <div class="bg-white/10 rounded-2xl p-6 hover:scale-[1.02] transition flex justify-center">
+          <div>
+            <h3 class="text-lg font-medium mb-4 text-pink-400 text-center">
+              Ensemble Classification Report
+            </h3>
+            <img src="{% static 'images/EP.jpeg' %}" 
+                 class="rounded-xl shadow-lg w-full max-h-64 object-contain cursor-pointer preview-img">
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    <!-- ================= END MODEL CARD ================= -->
+
+  </div>
+
+  {% include 'footer.html' %}
+
+  <!-- ================= Image Preview Modal ================= -->
+  <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50">
+    <span id="close-modal" class="absolute top-5 right-5 text-white text-3xl cursor-pointer">&times;</span>
+    <img id="modal-img" src="" class="max-h-[90%] max-w-[90%] rounded-xl shadow-2xl">
+  </div>
+
+  <script>
+    // Get modal elements
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const closeModal = document.getElementById('close-modal');
+
+    // Add click event to all images with class 'preview-img'
+    document.querySelectorAll('.preview-img').forEach(img => {
+      img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modal.classList.remove('hidden');
+      });
+    });
+
+    // Close modal on clicking X
+    closeModal.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    // Close modal on clicking outside the image
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+  </script>
+
+</body>
+</html>
