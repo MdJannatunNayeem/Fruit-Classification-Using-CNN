@@ -60,15 +60,7 @@ def predict_stacking(image_path):
     proba = meta.predict_proba(features)[0]
     confidence = float(proba[class_idx]) * 100
 
-    # (Optional) Print debug info – uncomment if needed
-    # print("Top 3 predictions from each base model:")
-    # top_r = np.argsort(pred_r[0])[::-1][:3]
-    # top_i = np.argsort(pred_i[0])[::-1][:3]
-    # top_x = np.argsort(pred_x[0])[::-1][:3]
-    # print("ResNet:", [(CLASS_NAMES[i], pred_r[0][i]) for i in top_r])
-    # print("Inception:", [(CLASS_NAMES[i], pred_i[0][i]) for i in top_i])
-    # print("Xception:", [(CLASS_NAMES[i], pred_x[0][i]) for i in top_x])
-    # print("Meta probabilities top5:", [(CLASS_NAMES[i], proba[i]) for i in np.argsort(proba)[::-1][:5]])
+   
 
     return CLASS_NAMES[class_idx], confidence
 
